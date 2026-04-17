@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divine By Rox | Uñas y Estilo</title>
+    <title>Divine By Rox | Uñas y Pedicura</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
@@ -13,11 +13,10 @@
             --guinda: #6A1E34;
             --dorado: #D4AF37;
             --dorado-claro: #ebd07f;
-            --fondo: #FDFBF7; /* Un tono crema muy sutil y limpio */
+            --fondo: #FDFBF7; 
             --texto: #333333;
         }
 
-        /* Movimiento suave al hacer clic en los botones */
         html {
             scroll-behavior: smooth;
         }
@@ -30,10 +29,9 @@
             padding: 0;
         }
 
-        /* 1. PORTADA (Pantalla Completa) */
+        /* 1. PORTADA */
         .hero {
             height: 100vh;
-            /* El gradiente le da un filtro guinda semitransparente a la foto de fondo para que la letra resalte */
             background: linear-gradient(rgba(106, 30, 52, 0.85), rgba(106, 30, 52, 0.85)), url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             display: flex;
             flex-direction: column;
@@ -61,7 +59,6 @@
             margin-bottom: 40px;
         }
 
-        /* Botones de la Portada */
         .botones-hero {
             display: flex;
             gap: 20px;
@@ -101,7 +98,7 @@
             color: var(--guinda);
         }
 
-        /* Estilos Generales para el resto de la página */
+        /* Estilos Generales */
         .seccion {
             padding: 80px 20px;
             max-width: 1000px;
@@ -117,26 +114,47 @@
             margin-top: 0;
         }
 
-        /* 2. CARRUSEL DE IMÁGENES */
+        /* NUEVA SECCIÓN: SERVICIOS */
+        .servicios-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .servicio-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-bottom: 4px solid var(--dorado);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .servicio-card h3 {
+            color: var(--guinda);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        /* 2. CARRUSEL */
         .carrusel {
             display: flex;
             overflow-x: auto;
-            scroll-snap-type: x mandatory; /* Hace que la foto se detenga en el centro al deslizar */
+            scroll-snap-type: x mandatory;
             gap: 20px;
             padding: 20px 0;
-            /* Estilos para la barra de desplazamiento */
             scrollbar-width: thin;
             scrollbar-color: var(--dorado) var(--fondo);
         }
 
-        .carrusel::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .carrusel::-webkit-scrollbar-thumb {
-            background-color: var(--dorado);
-            border-radius: 10px;
-        }
+        .carrusel::-webkit-scrollbar { height: 8px; }
+        .carrusel::-webkit-scrollbar-thumb { background-color: var(--dorado); border-radius: 10px; }
 
         .foto-carrusel {
             scroll-snap-align: center;
@@ -164,9 +182,8 @@
             display: block;
         }
 
-        /* Ajustes para Celular */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; }
+            .hero h1 { font-size: 3.5rem; }
             .titulo-seccion { font-size: 3rem; }
             .foto-carrusel { flex: 0 0 240px; height: 340px; }
         }
@@ -176,46 +193,11 @@
 
     <section class="hero">
         <h1>Divine By Rox</h1>
-        <p>Expertise en Uñas & Estilo</p>
+        <p>Uñas, Pedicura & Estilo</p>
         <div class="botones-hero">
             <a href="#citas" class="btn btn-dorado">Agendar Cita</a>
-            <a href="#ubicacion" class="btn btn-transparente">Ver Mapa</a>
+            <a href="#servicios" class="btn btn-transparente">Servicios</a>
         </div>
     </section>
 
-    <section class="seccion" id="galeria">
-        <h2 class="titulo-seccion">Nuestro Trabajo</h2>
-        <p style="margin-bottom: 40px; color: #666;">Desliza para ver nuestros diseños</p>
-        
-        <div class="carrusel">
-       
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" alt="Diseño Devine Rox 1" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" alt="Diseño Devine Rox 2" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" alt="Diseño Devine Rox 3" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" alt="Diseño Devine Rox 4" class="foto-carrusel">
-       
-        </div>
-    </section>
-
-    <section class="seccion" id="citas" style="background-color: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-        <h2 class="titulo-seccion">Reserva tu Set</h2>
-        <p style="margin-bottom: 30px; color: #666;">Selecciona el horario que prefieras</p>
-        
-        <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/roketpower7/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
-        
-    </section>
-
-    <section class="seccion" id="ubicacion">
-        <h2 class="titulo-seccion">Visítanos</h2>
-        <p style="margin-bottom: 30px; color: #666;">Te esperamos en nuestro estudio</p>
-        
-        <div class="mapa-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110904.34149607514!2d-96.4357776495394!3d30.65582736173841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86468383f982845d%3A0x67341e9dc85cb481!2sBryan%2C%20TX!5e0!3m2!1sen!2sus!4v1713309600000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </section>
-
-</body>
-</html>
+    <section class="
