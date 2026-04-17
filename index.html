@@ -3,217 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divine By Rox | Uñas y Estilo</title>
+    <title>Devine By Rox | Luxury Nails</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Paleta de Colores Oficial */
         :root {
-            --guinda: #6A1E34;
-            --dorado: #D4AF37;
-            --dorado-claro: #ebd07f;
-            --fondo: #FDFBF7; /* Un tono crema muy sutil y limpio */
-            --texto: #333333;
+            /* Paleta Beige y Oro Estilo Versace */
+            --beige-elegante: #DBC1AC;
+            --dorado-versace: #B69121;
+            --crema-lujo: #F9F6F1;
+            --negro-detalles: #1A1A1A;
+            --texto: #4A443F;
         }
 
-        /* Movimiento suave al hacer clic en los botones */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--fondo);
+            background-color: var(--crema-lujo);
             color: var(--texto);
             margin: 0;
-            padding: 0;
+            /* Fondo con patrón de greca sutil estilo Versace */
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); 
         }
 
-        /* 1. PORTADA (Pantalla Completa) */
+        /* 1. PORTADA ESTILO LUXURY */
         .hero {
             height: 100vh;
-            /* El gradiente le da un filtro guinda semitransparente a la foto de fondo para que la letra resalte */
-            background: linear-gradient(rgba(106, 30, 52, 0.85), rgba(106, 30, 52, 0.85)), url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            background: linear-gradient(rgba(249, 246, 241, 0.8), rgba(249, 246, 241, 0.8)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-            padding: 0 20px;
+            border-bottom: 8px solid var(--dorado-versace);
+            /* Borde estilo greca superior e inferior */
+            border-top: 8px solid var(--dorado-versace);
         }
 
         .hero h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
-            color: var(--dorado);
+            font-size: 6rem;
+            color: var(--dorado-versace);
             margin: 0;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
         }
 
         .hero p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 4px;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            margin-top: 5px;
-            margin-bottom: 40px;
+            color: var(--negro-detalles);
+            margin-top: 10px;
+            margin-bottom: 50px;
         }
 
-        /* Botones de la Portada */
-        .botones-hero {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        /* Botones Versace */
+        .botones-hero { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
         .btn {
-            padding: 15px 35px;
-            border-radius: 30px;
+            padding: 18px 40px;
+            border-radius: 0; /* Estilo más cuadrado y arquitectónico */
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--dorado);
+            transition: all 0.4s ease;
+            border: 2px solid var(--dorado-versace);
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
         }
 
         .btn-dorado {
-            background-color: var(--dorado);
-            color: var(--guinda);
+            background-color: var(--dorado-versace);
+            color: white;
         }
 
         .btn-dorado:hover {
-            background-color: transparent;
-            color: var(--dorado);
+            background-color: var(--negro-detalles);
+            border-color: var(--negro-detalles);
         }
 
         .btn-transparente {
             background-color: transparent;
-            color: var(--dorado);
+            color: var(--negro-detalles);
         }
 
         .btn-transparente:hover {
-            background-color: var(--dorado);
-            color: var(--guinda);
+            background-color: var(--dorado-versace);
+            color: white;
         }
 
-        /* Estilos Generales para el resto de la página */
+        /* SECCIONES */
         .seccion {
-            padding: 80px 20px;
-            max-width: 1000px;
+            padding: 100px 20px;
+            max-width: 1100px;
             margin: 0 auto;
             text-align: center;
         }
 
         .titulo-seccion {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: var(--guinda);
-            margin-bottom: 5px;
-            margin-top: 0;
+            font-size: 4.5rem;
+            color: var(--dorado-versace);
+            margin-bottom: 10px;
         }
 
-        /* 2. CARRUSEL DE IMÁGENES */
+        /* CARRUSEL MEJORADO */
         .carrusel {
             display: flex;
             overflow-x: auto;
-            scroll-snap-type: x mandatory; /* Hace que la foto se detenga en el centro al deslizar */
-            gap: 20px;
-            padding: 20px 0;
-            /* Estilos para la barra de desplazamiento */
-            scrollbar-width: thin;
-            scrollbar-color: var(--dorado) var(--fondo);
-        }
-
-        .carrusel::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .carrusel::-webkit-scrollbar-thumb {
-            background-color: var(--dorado);
-            border-radius: 10px;
+            scroll-snap-type: x mandatory;
+            gap: 25px;
+            padding: 40px 0;
+            scrollbar-width: none;
         }
 
         .foto-carrusel {
             scroll-snap-align: center;
-            flex: 0 0 280px;
-            height: 380px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 2px solid var(--dorado);
-        }
-
-        /* 3. CALENDLY Y MAPA */
-        .mapa-container {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 2px solid var(--dorado);
-            margin-top: 30px;
-        }
-
-        iframe {
-            width: 100%;
+            flex: 0 0 300px;
             height: 400px;
-            border: none;
-            display: block;
+            object-fit: cover;
+            border: 4px solid var(--dorado-versace);
+            box-shadow: 15px 15px 0px var(--beige-elegante);
         }
 
-        /* Ajustes para Celular */
+        /* CONTENEDOR DE CITAS */
+        #citas {
+            background-color: white;
+            border: 1px solid var(--beige-elegante);
+            margin-bottom: 50px;
+        }
+
+        .mapa-container {
+            border: 5px solid var(--dorado-versace);
+            box-shadow: 10px 10px 0px var(--beige-elegante);
+        }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; }
-            .titulo-seccion { font-size: 3rem; }
-            .foto-carrusel { flex: 0 0 240px; height: 340px; }
+            .hero h1 { font-size: 4.5rem; }
+            .hero p { letter-spacing: 3px; }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <h1>Divine By Rox</h1>
-        <p>Expertise en Uñas & Estilo</p>
+        <h1>Devine By Rox</h1>
+        <p>Estudio de Uñas de Lujo</p>
         <div class="botones-hero">
-            <a href="#citas" class="btn btn-dorado">Agendar Cita</a>
-            <a href="#ubicacion" class="btn btn-transparente">Ver Mapa</a>
+            <a href="#citas" class="btn btn-dorado">Agendar Ahora</a>
+            <a href="#ubicacion" class="btn btn-transparente">Nuestra Ubicación</a>
         </div>
     </section>
 
     <section class="seccion" id="galeria">
-        <h2 class="titulo-seccion">Nuestro Trabajo</h2>
-        <p style="margin-bottom: 40px; color: #666;">Desliza para ver nuestros diseños</p>
+        <h2 class="titulo-seccion">El Arte de Rox</h2>
+        <p style="letter-spacing: 2px; color: var(--beige-elegante); font-weight: 600;">PORTAFOLIO EXCLUSIVO</p>
         
         <div class="carrusel">
-       
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" alt="Diseño Devine Rox 1" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" alt="Diseño Devine Rox 2" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" alt="Diseño Devine Rox 3" class="foto-carrusel">
-            <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" alt="Diseño Devine Rox 4" class="foto-carrusel">
-       
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" alt="Uñas 1" class="foto-carrusel">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" alt="Uñas 2" class="foto-carrusel">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" alt="Uñas 3" class="foto-carrusel">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" alt="Uñas 4" class="foto-carrusel">
         </div>
     </section>
 
-    <section class="seccion" id="citas" style="background-color: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-        <h2 class="titulo-seccion">Reserva tu Set</h2>
-        <p style="margin-bottom: 30px; color: #666;">Selecciona el horario que prefieras</p>
+    <section class="seccion" id="citas">
+        <h2 class="titulo-seccion">Reserva tu Experiencia</h2>
         
-        <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/roketpower7/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
+        <div class="calendly-inline-widget" data-url="TU_LINK_AQUI" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         
     </section>
 
     <section class="seccion" id="ubicacion">
-        <h2 class="titulo-seccion">Visítanos</h2>
-        <p style="margin-bottom: 30px; color: #666;">Te esperamos en nuestro estudio</p>
-        
+        <h2 class="titulo-seccion">Encuéntranos</h2>
         <div class="mapa-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110904.34149607514!2d-96.4357776495394!3d30.65582736173841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86468383f982845d%3A0x67341e9dc85cb481!2sBryan%2C%20TX!5e0!3m2!1sen!2sus!4v1713309600000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.6558273617384!2d-96.4357776495394!3d30.65582736173841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86468383f982846d%3A0xc3f5c707559e19e5!2sBryan%2C%20TX!5e0!3m2!1sen!2sus!4v1713318000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
