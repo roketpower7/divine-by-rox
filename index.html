@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devine By Rox | Citas Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-pink: #2d1b1e;
+            --soft-nude: #fdf5f2;
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--soft-nude); margin: 0; }
+        header { 
+            background-color: var(--dark-pink); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
+        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+        .booking-section { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Devine By Rox</h1>
+        <p>Expertise en Uñas & Estilo</p>
+    </header>
+
+    <div class="booking-section">
+        <div class="card">
+            <h2>Reserva tu Set</h2>
+            <p>Selecciona el servicio y horario que prefieras</p>
+            
+            <div id="calendly-inline-app" style="min-width:320px;height:700px;">
+                <p>Cargando calendario de citas...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
