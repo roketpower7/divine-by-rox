@@ -18,8 +18,9 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
-        html { 
-            scroll-behavior: smooth; 
+     html { 
+            /* Se eliminó scroll-behavior: smooth para recuperar la inercia natural del celular */
+            -webkit-text-size-adjust: 100%;
         }
         
         body { 
@@ -30,6 +31,7 @@
             color: var(--cafe-negro);
             font-family: 'Montserrat', sans-serif;
             -webkit-font-smoothing: antialiased;
+            overscroll-behavior-y: none; /* Evita el rebote elástico en Android */
         }
 
         /* EL CONTENEDOR SEGURO QUE EVITA EL FREEZE */
@@ -70,10 +72,13 @@
 
         /* --- HERO --- */
        /* --- HERO (OPCIÓN 1: BLANCO EDITORIAL) --- */
+       /* --- HERO --- */
         .hero { 
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            /* Aumentamos el tinte negro de 0.3 a 0.5 para dar más contraste */
-            background: linear-gradient(rgba(26, 18, 11, 0.5), rgba(26, 18, 11, 0.5)), 
+            /* El truco pro: 100dvh evita que la página brinque cuando se oculta la barra del navegador */
+            height: 100dvh; 
+            min-height: 100vh; /* Respaldo para navegadores viejos */
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            background: linear-gradient(rgba(26, 18, 11, 0.3), rgba(26, 18, 11, 0.3)), 
                         url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1920&q=80') center/cover;
             color: var(--blanco); border-bottom: 1px solid var(--cafe-negro);
         }
