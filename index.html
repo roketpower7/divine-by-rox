@@ -52,7 +52,7 @@
             opacity: 1; 
         }
 
-        /* --- MENÚ TIPO PAINTBOX (STICKY) --- */
+       /* --- MENÚ TIPO PAINTBOX (MINIMALISMO EXTREMO) --- */
         .nav-bar {
             position: fixed; top: 0; width: 100%;
             background: rgba(249, 247, 242, 0.95);
@@ -61,9 +61,34 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 50px; z-index: 2000;
         }
-        .nav-logo { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--cafe-negro); text-decoration: none; }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { text-decoration: none; color: var(--cafe-negro); font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        
+        /* La hamburguesa siempre visible */
+        .menu-toggle { display: block; cursor: pointer; } 
+        
+        /* Los enlaces ocultos por defecto, listos para desplegarse */
+        .nav-links { 
+            position: absolute; 
+            top: 70px; 
+            left: 0; 
+            width: 100%; 
+            background: var(--beige); 
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--cafe-negro);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(-10px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-links a { margin-bottom: 25px; font-size: 0.8rem; }
+        
+        /* Agrupamos la hamburguesa y el botón de reservar a la derecha */
+        .nav-controls { display: flex; align-items: center; gap: 20px; }
 
         section { scroll-margin-top: 80px; padding: 100px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
         .titulo-seccion { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px; font-weight: 700; margin-bottom: 60px; }
@@ -155,13 +180,16 @@
 
     <div class="site-wrapper">
 
-        <nav class="nav-bar">
+       <nav class="nav-bar">
             <a href="#inicio" class="nav-logo">Divine</a>
             
-            <div class="menu-toggle" id="mobile-menu">
-                <svg width="28" height="28" fill="none" stroke="var(--cafe-negro)" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+            <div class="nav-controls">
+                <a href="#citas" class="btn" style="padding: 10px 20px; font-size: 0.6rem;">Book Now</a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <svg width="28" height="28" fill="none" stroke="var(--cafe-negro)" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </div>
             </div>
 
             <div class="nav-links" id="nav-links">
@@ -169,7 +197,6 @@
                 <a href="#galeria">Portafolio</a>
                 <a href="#reviews">Reseñas</a>
                 <a href="#social">Instagram</a>
-                <a href="#citas" class="btn-reservar-menu" style="border: 1px solid var(--cafe-negro); padding: 5px 15px;">Book Now</a>
             </div>
         </nav>
 
