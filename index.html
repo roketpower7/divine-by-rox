@@ -278,29 +278,31 @@
         startAuto();
     </script>
    <script>
-        // LÓGICA DEL MENÚ HAMBURGUESA
+        // LÓGICA DEL MENÚ HAMBURGUESA (MULTI-PLATAFORMA)
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
         
-        // Abre y cierra el menú al tocar el icono
-        mobileMenu.addEventListener('click', () => {
+        // 1. Abre y cierra el menú, pero DETIENE el clic para que no active el cierre global
+        mobileMenu.addEventListener('click', (event) => {
+            event.stopPropagation(); 
             navLinks.classList.toggle('active');
         });
 
-        // Cierra el menú automáticamente cuando la clienta elige una opción
+        // 2. Protege el interior del menú (para que no se cierre si das clic en un espacio vacío del menú)
+        navLinks.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+        // 3. Cierra el menú automáticamente al elegir una opción
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // NUEVO: Cierra el menú si se toca cualquier parte fuera de él
-        document.addEventListener('click', (event) => {
-            const isClickInsideMenu = navLinks.contains(event.target);
-            const isClickOnButton = mobileMenu.contains(event.target);
-            
-            // Si el menú está activo, y el toque NO fue en el menú ni en el botón, se cierra
-            if (!isClickInsideMenu && !isClickOnButton && navLinks.classList.contains('active')) {
+        // 4. El "Click Outside": Si el clic llega hasta el documento general, cierra el menú
+        document.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
         });
