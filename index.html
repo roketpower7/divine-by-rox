@@ -9,14 +9,14 @@
     
     <style>
         :root {
-            --cafe-negro: #1A120B; /* Casi negro para el contraste Paintbox */
+            --cafe-negro: #1A120B;
             --dorado: #C5A059;
             --beige: #F9F7F2;
             --blanco: #FFFFFF;
         }
 
-        /* --- BASE & ANIMACIONES --- */
         * { box-sizing: border-box; }
+        
         html, body { 
             overflow-x: hidden; 
             width: 100%; 
@@ -27,93 +27,63 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        /* --- TRANSICIONES OPTIMIZADAS (Sin Lag) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: transform, opacity; /* Optimización para GPU */
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- SECCIONES EDITORIALES --- */
-        .seccion {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
+        .seccion { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .titulo-seccion { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px; font-weight: 700; margin-bottom: 50px; }
 
-        .titulo-seccion {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-weight: 700;
-            margin-bottom: 60px;
-        }
-
-        /* --- 1. HERO (PORTADA) --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(26, 18, 11, 0.3), rgba(26, 18, 11, 0.3)), 
-                        url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1920&q=80') center/cover;
+            background: linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.4)), 
+                        url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             color: var(--blanco);
         }
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 5.5rem; margin: 0; color: var(--dorado); }
 
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6rem; margin: 0; color: var(--dorado); }
-        .hero p { letter-spacing: 8px; text-transform: uppercase; font-size: 0.9rem; margin-top: -10px; }
-
-        /* --- 2. SERVICIOS GRID (SHARP) --- */
+        /* --- SERVICIOS --- */
         .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border: 1px solid var(--cafe-negro); }
-        .card { padding: 60px 40px; border: 0.5px solid var(--cafe-negro); background: var(--blanco); transition: 0.4s; text-align: left; }
+        .card { padding: 60px 40px; border: 0.5px solid var(--cafe-negro); background: var(--blanco); text-align: left; transition: 0.3s; }
         .card:hover { background: var(--cafe-negro); color: var(--blanco); }
 
-        /* --- 3. GALERÍA AUTOMÁTICA --- */
-        .carrusel-container { overflow: hidden; position: relative; padding: 40px 0; }
-        .carrusel { display: flex; gap: 15px; cursor: grab; }
-        .foto { flex: 0 0 300px; height: 400px; object-fit: cover; border: 1px solid var(--cafe-negro); }
+        /* --- GALERÍA AUTO-SCROLL --- */
+        .carrusel-wrapper { width: 100%; overflow: hidden; white-space: nowrap; padding: 20px 0; position: relative; }
+        .carrusel { display: flex; gap: 15px; width: max-content; }
+        .foto { width: 300px; height: 400px; object-fit: cover; border: 1px solid var(--cafe-negro); flex-shrink: 0; }
 
-        /* --- 4. SECCIÓN DE RESEÑAS (ESTILO DARK/WHITE) --- */
-        .resenas-black {
-            background-color: var(--cafe-negro);
-            color: var(--blanco);
-            padding: 100px 20px;
-        }
+        /* --- RESEÑAS DARK --- */
+        .resenas-black { background-color: var(--cafe-negro); color: var(--blanco); padding: 80px 20px; }
+        .resena-texto { font-size: 1.3rem; font-weight: 200; font-style: italic; margin-bottom: 15px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .resena-autor { font-size: 0.7rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; }
 
-        .resena-item { max-width: 800px; margin: 0 auto 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px; }
-        .resena-texto { font-size: 1.4rem; font-weight: 200; font-style: italic; margin-bottom: 15px; }
-        .resena-autor { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dorado); }
-
-        /* --- 5. BOTONES Y SOCIAL --- */
+        /* --- BOTONES --- */
         .btn {
-            display: inline-block;
-            padding: 20px 50px;
-            border: 1px solid var(--cafe-negro);
-            text-decoration: none;
-            color: var(--cafe-negro);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            transition: 0.5s;
+            display: inline-block; padding: 18px 45px; border: 1px solid var(--cafe-negro);
+            text-decoration: none; color: var(--cafe-negro); font-size: 0.7rem;
+            font-weight: 700; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s;
         }
         .btn:hover { background: var(--cafe-negro); color: var(--blanco); }
         .btn-white { border-color: var(--blanco); color: var(--blanco); }
-        .btn-white:hover { background: var(--blanco); color: var(--cafe-negro); }
 
-        /* WHATSAPP FLOAT */
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: var(--cafe-negro); 
-            color: var(--dorado); width: 60px; height: 60px; display: flex; 
+            position: fixed; bottom: 25px; right: 25px; background: var(--cafe-negro); 
+            color: var(--dorado); width: 55px; height: 55px; display: flex; 
             justify-content: center; align-items: center; border: 1px solid var(--dorado); z-index: 1000;
         }
-
-        @media (max-width: 768px) { .hero h1 { font-size: 4rem; } .foto { flex: 0 0 250px; } }
     </style>
 </head>
 <body>
@@ -125,97 +95,91 @@
     </section>
 
     <section class="seccion reveal" id="servicios">
-        <h2 class="titulo-seccion">Menu</h2>
+        <h2 class="titulo-seccion">Services</h2>
         <div class="servicios-grid">
-            <div class="card"><h3>01. Manicura</h3><p>Técnica impecable y diseño de vanguardia.</p></div>
-            <div class="card"><h3>02. Pedicura</h3><p>Cuidado profundo con enfoque estético.</p></div>
-            <div class="card"><h3>03. Nail Art</h3><p>Expresión artística en cada detalle.</p></div>
+            <div class="card"><h3>01. Nails</h3><p>Minimalist art & structure.</p></div>
+            <div class="card"><h3>02. Spa</h3><p>Premium pedicure experience.</p></div>
+            <div class="card"><h3>03. Custom</h3><p>Bespoke editorial designs.</p></div>
         </div>
     </section>
 
     <section class="seccion reveal" id="galeria">
         <h2 class="titulo-seccion">Portfolio</h2>
-        <div class="carrusel-container">
-            <div class="carrusel" id="autoCarrusel">
+        <div class="carrusel-wrapper" id="wrapper">
+            <div class="carrusel" id="track">
                 <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
                 <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
                 <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=800&q=80" class="foto">
                 <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" class="foto">
                 <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" class="foto">
+                <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
+                <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
             </div>
         </div>
     </section>
 
     <section class="resenas-black">
         <div class="seccion reveal">
-            <h2 class="titulo-seccion" style="color: var(--dorado);">Client Experience</h2>
-            <div class="resena-item">
-                <p class="resena-texto">"El mejor diseño de uñas en Guasave. La atención al detalle de Rox es de otro nivel."</p>
-                <span class="resena-autor">— Maria Gonzalez</span>
-            </div>
-            <div class="resena-item">
-                <p class="resena-texto">"Ambiente profesional y resultados impecables. Mi pedicura favorita siempre."</p>
-                <span class="resena-autor">— Ana Paula</span>
-            </div>
+            <h2 class="titulo-seccion" style="color: var(--dorado);">Reviews</h2>
+            <div class="resena-texto">"The best editorial nails in Guasave. Pure luxury."</div>
+            <div class="resena-autor">— Maria G.</div>
         </div>
-    </section>
-
-    <section class="seccion reveal">
-        <h2 class="titulo-seccion">Follow</h2>
-        <p style="margin-bottom: 30px;">@divinebyrox</p>
-        <a href="https://www.instagram.com/divinebyrox?igsh=MW1pdG5nMjE5NW9ocw==" class="btn" target="_blank">Instagram</a>
     </section>
 
     <section class="seccion reveal" id="citas">
-        <h2 class="titulo-seccion">Reservations</h2>
-        <div style="background: white; padding: 60px; border: 1px solid var(--cafe-negro);">
-            <p style="margin-bottom: 40px;">Agenda tu próxima experiencia Divine directamente en nuestro sistema.</p>
-            <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" target="_blank" class="btn" style="background: var(--cafe-negro); color: white;">Book Appointment</a>
+        <h2 class="titulo-seccion">Booking</h2>
+        <div style="background: white; padding: 50px; border: 1px solid var(--cafe-negro);">
+            <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" target="_blank" class="btn">Schedule Appointment</a>
         </div>
     </section>
 
-    <section class="seccion reveal">
+    <section class="seccion reveal" id="ubicacion">
         <h2 class="titulo-seccion">Location</h2>
-        <p style="margin-bottom: 40px; font-size: 0.8rem; letter-spacing: 2px;">Valles de Vidafel | Guasave, Sin.</p>
         <div style="border: 1px solid var(--cafe-negro); overflow: hidden;">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.74712!2d-108.4747!3d25.5459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDMyJzI1LjIiTiAxMDjCsDI4JzI4LjkiVw!5e0!3m2!1ses!2smx!4v1713370000000" style="width:100%; height:400px; border:0;"></iframe>
         </div>
     </section>
 
     <a href="https://wa.me/526871597255" class="whatsapp-float" target="_blank">
-        <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.67-1.611-.918-2.21-.242-.587-.487-.508-.67-.517-.172-.008-.37-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.433 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.481-8.413z"></path></svg>
+        <svg width="25" height="25" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.67-1.611-.918-2.21-.242-.587-.487-.508-.67-.517-.172-.008-.37-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.433 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.481-8.413z"></path></svg>
     </a>
 
     <script>
-        // 1. Efecto REVEAL al hacer Scroll
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    reveals[i].classList.add("active");
+        // 1. REVEAL SYSTEM (Intersection Observer - No gasta CPU al scrollear)
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+            });
+        }, observerOptions);
 
-        // 2. GALERÍA AUTOMÁTICA
-        const slider = document.getElementById('autoCarrusel');
-        let scrollAmount = 0;
-        function autoPlay() {
-            scrollAmount++;
-            if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-                scrollAmount = 0;
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 2. AUTO-SCROLL GALLERY (Smooth RequestAnimationFrame)
+        const track = document.getElementById('track');
+        let currentScroll = 0;
+        let isPaused = false;
+
+        function animateGallery() {
+            if (!isPaused) {
+                currentScroll += 0.5; // Velocidad de escaneo
+                if (currentScroll >= track.scrollWidth / 2) {
+                    currentScroll = 0;
+                }
+                track.style.transform = `translateX(-${currentScroll}px)`;
             }
-            slider.scrollTo(scrollAmount, 0);
+            requestAnimationFrame(animateGallery);
         }
-        let playInterval = setInterval(autoPlay, 30);
-        
-        // Pausar al tocar o pasar el mouse
-        slider.addEventListener('mouseenter', () => clearInterval(playInterval));
-        slider.addEventListener('mouseleave', () => playInterval = setInterval(autoPlay, 30));
+
+        animateGallery();
+
+        // Pausa al tocar (User Override)
+        track.addEventListener('mouseenter', () => isPaused = true);
+        track.addEventListener('mouseleave', () => isPaused = false);
+        track.addEventListener('touchstart', () => isPaused = true);
+        track.addEventListener('touchend', () => isPaused = false);
     </script>
 
 </body>
