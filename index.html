@@ -92,20 +92,64 @@
             justify-content: center; align-items: center; border: 1px solid var(--dorado); z-index: 3000;
         }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 3.5rem; } }
+       /* --- MENÚ MÓVIL (HAMBURGUESA) --- */
+        .menu-toggle { display: none; cursor: pointer; }
+
+        @media (max-width: 768px) { 
+            .menu-toggle { display: block; } /* Muestra el icono en celular */
+            
+            /* El menú pasa de horizontal a una caja vertical desplegable */
+            .nav-links { 
+                position: absolute; 
+                top: 70px; /* Se pone debajo de la barra */
+                left: 0; 
+                width: 100%; 
+                background: var(--beige); 
+                flex-direction: column; 
+                align-items: center;
+                padding: 30px 0;
+                border-bottom: 1px solid var(--cafe-negro);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                
+                /* Estado oculto por defecto */
+                opacity: 0; 
+                visibility: hidden; 
+                transform: translateY(-10px);
+                transition: all 0.3s ease-in-out;
+            }
+
+            /* Estado visible cuando se toca el botón */
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-links a { margin-bottom: 25px; font-size: 0.8rem; }
+            .btn-reservar-menu { margin-bottom: 0 !important; }
+            
+            .hero h1 { font-size: 3.5rem; } 
+        }
     </style>
 </head>
 <body>
 
     <nav class="nav-bar">
         <a href="#inicio" class="nav-logo">Divine</a>
-        <div class="nav-links">
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <svg width="28" height="28" fill="none" stroke="var(--cafe-negro)" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </div>
+
+        <div class="nav-links" id="nav-links">
             <a href="#servicios">Servicios</a>
             <a href="#galeria">Portafolio</a>
+            <a href="#reviews">Reseñas</a>
             <a href="#social">Instagram</a>
-            <a href="#citas">Citas</a>
+            <a href="#citas" class="btn-reservar-menu" style="border: 1px solid var(--cafe-negro); padding: 5px 15px;">Book Now</a>
         </div>
-        <a href="#citas" class="btn" style="padding: 10px 20px; font-size: 0.6rem;">Book Now</a>
     </nav>
 
     <section class="hero" id="inicio" style="max-width: 100%;">
@@ -209,6 +253,23 @@
         container.addEventListener('touchstart', () => { isUserInteracting = true; clearInterval(autoScroll); }, {passive: true});
         container.addEventListener('touchend', () => { isUserInteracting = false; setTimeout(startAuto, 2000); }, {passive: true});
         startAuto();
+    </script>
+    <script>
+        // LÓGICA DEL MENÚ HAMBURGUESA
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        // Abre y cierra el menú al tocar el icono
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Cierra el menú automáticamente cuando la clienta elige una opción
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
