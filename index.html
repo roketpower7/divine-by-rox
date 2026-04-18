@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* =========================================
+           1. VARIABLES Y CONFIGURACIÓN BASE
+           ========================================= */
         :root {
             --cafe-negro: #1A120B;
             --dorado: #C5A059;
@@ -15,7 +18,7 @@
             --blanco: #FFFFFF;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         html, body { 
             overflow-x: hidden; 
@@ -27,12 +30,12 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* --- TRANSICIONES OPTIMIZADAS (Sin Lag) --- */
+        /* --- TRANSICIONES (REVEAL SYSTEM) --- */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: transform, opacity; /* Optimización para GPU */
+            will-change: transform, opacity;
         }
         .reveal.active {
             opacity: 1;
@@ -42,7 +45,9 @@
         .seccion { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
         .titulo-seccion { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px; font-weight: 700; margin-bottom: 50px; }
 
-        /* --- HERO --- */
+        /* =========================================
+           2. SECCIÓN HERO (ESTILO EDITORIAL)
+           ========================================= */
         .hero {
             height: 100vh;
             display: flex;
@@ -50,27 +55,53 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.4)), 
-                        url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+                        url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1920&q=80') center/cover;
             color: var(--blanco);
         }
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 5.5rem; margin: 0; color: var(--dorado); }
+        .hero p { letter-spacing: 8px; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* --- SERVICIOS --- */
+        /* =========================================
+           3. SERVICIOS (GRID MINIMALISTA)
+           ========================================= */
         .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border: 1px solid var(--cafe-negro); }
         .card { padding: 60px 40px; border: 0.5px solid var(--cafe-negro); background: var(--blanco); text-align: left; transition: 0.3s; }
         .card:hover { background: var(--cafe-negro); color: var(--blanco); }
+        .card h3 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* --- GALERÍA AUTO-SCROLL --- */
-        .carrusel-wrapper { width: 100%; overflow: hidden; white-space: nowrap; padding: 20px 0; position: relative; }
-        .carrusel { display: flex; gap: 15px; width: max-content; }
-        .foto { width: 300px; height: 400px; object-fit: cover; border: 1px solid var(--cafe-negro); flex-shrink: 0; }
+        /* =========================================
+           4. GALERÍA DUAL (AUTO + MANUAL)
+           ========================================= */
+        .carrusel-wrapper { 
+            width: 100%; 
+            overflow-x: auto; /* Permite scroll manual nativo */
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            scroll-snap-type: x proximity;
+            scrollbar-width: none; /* Oculta barra en Firefox */
+        }
+        .carrusel-wrapper::-webkit-scrollbar { display: none; } /* Oculta barra en Chrome/Safari */
 
-        /* --- RESEÑAS DARK --- */
+        .foto { 
+            width: 300px; 
+            height: 400px; 
+            object-fit: cover; 
+            border: 1px solid var(--cafe-negro); 
+            flex-shrink: 0;
+            scroll-snap-align: center;
+        }
+
+        /* =========================================
+           5. RESEÑAS (MODO DARK)
+           ========================================= */
         .resenas-black { background-color: var(--cafe-negro); color: var(--blanco); padding: 80px 20px; }
-        .resena-texto { font-size: 1.3rem; font-weight: 200; font-style: italic; margin-bottom: 15px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .resena-texto { font-size: 1.3rem; font-weight: 200; font-style: italic; margin-bottom: 15px; max-width: 800px; margin: 0 auto 15px; }
         .resena-autor { font-size: 0.7rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; }
 
-        /* --- BOTONES --- */
+        /* =========================================
+           6. BOTONES Y ACCIONES
+           ========================================= */
         .btn {
             display: inline-block; padding: 18px 45px; border: 1px solid var(--cafe-negro);
             text-decoration: none; color: var(--cafe-negro); font-size: 0.7rem;
@@ -84,6 +115,8 @@
             color: var(--dorado); width: 55px; height: 55px; display: flex; 
             justify-content: center; align-items: center; border: 1px solid var(--dorado); z-index: 1000;
         }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 3.5rem; } .foto { width: 260px; } }
     </style>
 </head>
 <body>
@@ -105,16 +138,15 @@
 
     <section class="seccion reveal" id="galeria">
         <h2 class="titulo-seccion">Portfolio</h2>
-        <div class="carrusel-wrapper" id="wrapper">
-            <div class="carrusel" id="track">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
-                <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=800&q=80" class="foto">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" class="foto">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" class="foto">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
-                <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
-            </div>
+        <p style="font-size: 0.7rem; margin-top: -30px; margin-bottom: 20px; letter-spacing: 2px;">DESLIZA PARA EXPLORAR</p>
+        <div class="carrusel-wrapper" id="scrollContainer">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
+            <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=800&q=80" class="foto">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%203.jpg" class="foto">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%204.jpg" class="foto">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%201.jpg" class="foto">
+            <img src="Dise%C3%B1o%20de%20u%C3%B1as%202.jpg" class="foto">
         </div>
     </section>
 
@@ -122,18 +154,21 @@
         <div class="seccion reveal">
             <h2 class="titulo-seccion" style="color: var(--dorado);">Reviews</h2>
             <div class="resena-texto">"The best editorial nails in Guasave. Pure luxury."</div>
-            <div class="resena-autor">— Maria G.</div>
+            <div class="resena-autor">— Maria Gonzalez</div>
+            <div style="margin-top: 40px;" class="resena-texto">"Atención al detalle impecable, un espacio para consentirse."</div>
+            <div class="resena-autor">— Ana Paula</div>
         </div>
     </section>
 
     <section class="seccion reveal" id="citas">
         <h2 class="titulo-seccion">Booking</h2>
         <div style="background: white; padding: 50px; border: 1px solid var(--cafe-negro);">
-            <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" target="_blank" class="btn">Schedule Appointment</a>
+            <p style="margin-bottom: 30px;">Vive la experiencia Divine reservando tu espacio.</p>
+            <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" target="_blank" class="btn">Schedule Now</a>
         </div>
     </section>
 
-    <section class="seccion reveal" id="ubicacion">
+    <section class="seccion reveal">
         <h2 class="titulo-seccion">Location</h2>
         <div style="border: 1px solid var(--cafe-negro); overflow: hidden;">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.74712!2d-108.4747!3d25.5459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDMyJzI1LjIiTiAxMDjCsDI4JzI4LjkiVw!5e0!3m2!1ses!2smx!4v1713370000000" style="width:100%; height:400px; border:0;"></iframe>
@@ -145,8 +180,8 @@
     </a>
 
     <script>
-        // 1. REVEAL SYSTEM (Intersection Observer - No gasta CPU al scrollear)
-        const observerOptions = { threshold: 0.15 };
+        // 1. REVEAL SYSTEM (Lógica de bajo consumo)
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -157,29 +192,47 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. AUTO-SCROLL GALLERY (Smooth RequestAnimationFrame)
-        const track = document.getElementById('track');
-        let currentScroll = 0;
-        let isPaused = false;
+        // 2. GALERÍA AUTOMÁTICA CON CONTROL MANUAL (Logic Fix)
+        const container = document.getElementById('scrollContainer');
+        let isUserInteracting = false;
+        let autoScrollTimer;
 
-        function animateGallery() {
-            if (!isPaused) {
-                currentScroll += 0.5; // Velocidad de escaneo
-                if (currentScroll >= track.scrollWidth / 2) {
-                    currentScroll = 0;
+        // Función de auto-scroll suave
+        function startAutoScroll() {
+            autoScrollTimer = setInterval(() => {
+                if (!isUserInteracting) {
+                    container.scrollLeft += 1; // Un píxel a la vez para suavidad extrema
+                    
+                    // Si llegamos al final, volvemos al inicio sin que se note (loop sutil)
+                    if (container.scrollLeft >= (container.scrollWidth - container.clientWidth) - 10) {
+                        container.scrollLeft = 0;
+                    }
                 }
-                track.style.transform = `translateX(-${currentScroll}px)`;
-            }
-            requestAnimationFrame(animateGallery);
+            }, 30); // 30ms = 33fps aprox, muy suave
         }
 
-        animateGallery();
+        // Manejo de Interacción de Usuario (Evita el freeze)
+        const stopInteraction = () => {
+            isUserInteracting = true;
+            clearInterval(autoScrollTimer);
+        };
 
-        // Pausa al tocar (User Override)
-        track.addEventListener('mouseenter', () => isPaused = true);
-        track.addEventListener('mouseleave', () => isPaused = false);
-        track.addEventListener('touchstart', () => isPaused = true);
-        track.addEventListener('touchend', () => isPaused = false);
+        const resumeInteraction = () => {
+            isUserInteracting = false;
+            // Esperamos 2 segundos de inactividad antes de volver a mover la galería
+            clearTimeout(window.resumeTimeout);
+            window.resumeTimeout = setTimeout(startAutoScroll, 2000);
+        };
+
+        // Eventos para PC y Móvil (Pixel 9 Pro XL)
+        container.addEventListener('touchstart', stopInteraction, {passive: true});
+        container.addEventListener('touchend', resumeInteraction, {passive: true});
+        container.addEventListener('mousedown', stopInteraction);
+        container.addEventListener('mouseup', resumeInteraction);
+        container.addEventListener('mouseleave', resumeInteraction);
+
+        // Iniciamos el sistema
+        startAutoScroll();
     </script>
 
 </body>
