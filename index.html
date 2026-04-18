@@ -277,7 +277,7 @@
         container.addEventListener('touchend', () => { isUserInteracting = false; setTimeout(startAuto, 2000); }, {passive: true});
         startAuto();
     </script>
-    <script>
+   <script>
         // LÓGICA DEL MENÚ HAMBURGUESA
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
@@ -292,6 +292,17 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
+        });
+
+        // NUEVO: Cierra el menú si se toca cualquier parte fuera de él
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = navLinks.contains(event.target);
+            const isClickOnButton = mobileMenu.contains(event.target);
+            
+            // Si el menú está activo, y el toque NO fue en el menú ni en el botón, se cierra
+            if (!isClickInsideMenu && !isClickOnButton && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
         });
     </script>
 </body>
