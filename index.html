@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- PALETA CAFÉ, BEIGE Y DORADO --- */
+        /* =========================================
+           1. VARIABLES Y ESTILOS GLOBALES
+           ========================================= */
         :root {
             --cafe: #4B3621;
             --dorado: #D4AF37;
@@ -17,46 +19,7 @@
             --texto: #5D4037;
             --blanco: #FFFFFF;
         }
-        /* --- ESTILO SECCIÓN INSTAGRAM --- */
-        .instagram-section {
-            padding: 60px 20px;
-            background-color: var(--blanco);
-            text-align: center;
-        }
 
-        .ig-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--cafe);
-            text-decoration: none;
-            font-weight: 600;
-            border: 2px solid var(--dorado);
-            padding: 12px 25px;
-            border-radius: 30px;
-            transition: 0.3s;
-            margin-top: 20px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .ig-link:hover {
-            background-color: var(--dorado);
-            color: var(--blanco);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .ig-handle {
-            display: block;
-            margin-top: 10px;
-            color: var(--dorado);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* Bloqueo de scroll lateral */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -71,7 +34,42 @@
             color: var(--texto);
         }
 
-        /* 1. PORTADA */
+        /* =========================================
+           2. ESTILOS DE SECCIONES (COMUNES)
+           ========================================= */
+        .seccion {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .titulo-seccion {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--cafe);
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 2px solid var(--dorado);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .btn-dorado { background: var(--dorado); color: var(--cafe); }
+        .btn-dorado:hover { background: transparent; color: var(--dorado); }
+
+        /* =========================================
+           3. ESTILOS ESPECÍFICOS POR BLOQUE
+           ========================================= */
+
+        /* Portada (Hero) */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(75, 54, 33, 0.8), rgba(75, 54, 33, 0.8)), 
@@ -100,35 +98,7 @@
             color: var(--beige);
         }
 
-        .btn {
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            border: 2px solid var(--dorado);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-        }
-
-        .btn-dorado { background: var(--dorado); color: var(--cafe); }
-        .btn-dorado:hover { background: transparent; color: var(--dorado); }
-
-        /* 2. SECCIONES */
-        .seccion {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .titulo-seccion {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: var(--cafe);
-            margin-bottom: 10px;
-        }
-
+        /* Servicios */
         .servicios-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -144,48 +114,49 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-       /* 3. CARRUSEL CON SCROLL FUNCIONAL */
-.carrusel {
-    display: flex;
-    overflow-x: auto; /* Permite el movimiento lateral */
-    gap: 20px;
-    padding: 20px 10px;
-    scroll-snap-type: x mandatory; /* Hace que las fotos se "ajusten" al deslizar */
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin; /* Barra fina en Firefox */
-    scrollbar-color: var(--dorado) var(--beige-oscuro);
-}
+        /* Carrusel / Galería */
+        .carrusel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 10px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--dorado) var(--beige-oscuro);
+        }
 
-/* Estilo de la barra de scroll para Chrome/Edge/Safari */
-.carrusel::-webkit-scrollbar {
-    height: 8px; /* Altura de la barra horizontal */
-}
+        .carrusel::-webkit-scrollbar { height: 8px; }
+        .carrusel::-webkit-scrollbar-thumb { background: var(--dorado); border-radius: 10px; }
+        .carrusel::-webkit-scrollbar-track { background: var(--beige-oscuro); border-radius: 10px; }
 
-.carrusel::-webkit-scrollbar-thumb {
-    background: var(--dorado); /* Color dorado para la barra */
-    border-radius: 10px;
-}
+        .foto {
+            flex: 0 0 280px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid var(--dorado);
+            scroll-snap-align: start;
+            transition: transform 0.3s;
+        }
+        .foto:hover { transform: scale(1.02); }
 
-.carrusel::-webkit-scrollbar-track {
-    background: var(--beige-oscuro); /* Color de fondo de la barra */
-    border-radius: 10px;
-}
+        /* Instagram Section Styles */
+        .instagram-section {
+            padding: 60px 20px;
+            background-color: var(--blanco);
+            text-align: center;
+        }
 
-.foto {
-    flex: 0 0 280px;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 15px;
-    border: 2px solid var(--dorado);
-    scroll-snap-align: start; /* Alinea la foto al inicio al hacer scroll */
-    transition: transform 0.3s;
-}
+        .ig-handle {
+            display: block;
+            margin-top: 10px;
+            color: var(--dorado);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
 
-.foto:hover {
-    transform: scale(1.02); /* Efecto sutil al pasar el mouse */
-}
-
-        /* 4. WHATSAPP Y MAPA */
+        /* WhatsApp Link */
         .ws-link {
             display: inline-flex;
             align-items: center;
@@ -201,6 +172,7 @@
         }
         .ws-link:hover { background: #25D366; color: white; }
 
+        /* Mapa */
         .mapa-container {
             border-radius: 20px;
             overflow: hidden;
@@ -209,6 +181,7 @@
             margin-top: 30px;
         }
 
+        /* Adaptabilidad Móvil */
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
             .titulo-seccion { font-size: 3rem; }
@@ -216,26 +189,13 @@
     </style>
 </head>
 <body>
-    <section class="seccion" id="social" style="background-color: var(--blanco); border-top: 1px solid var(--beige-oscuro);">
-        <h2 class="titulo-seccion" style="font-size: 3.5rem;">Síguenos</h2>
-        <p style="margin-bottom: 10px;">Encuentra inspiración para tu próximo diseño en nuestro perfil:</p>
-        
-        <strong style="display: block; color: var(--dorado); font-size: 1.2rem; margin-bottom: 20px;">@DivineByRox</strong>
-
-        <a href="https://www.instagram.com/https://www.instagram.com/divinebyrox?igsh=MW1pdG5nMjE5NW9ocw==" class="btn" target="_blank" 
-           style="border-color: var(--dorado); color: var(--cafe); display: inline-flex; align-items: center; gap: 10px; background: var(--beige);">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.337 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28-.073-1.689-.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            VER PORTAFOLIO EN INSTAGRAM
-        </a>
-    </section>
 
     <section class="hero" id="inicio">
         <h1>Divine By Rox</h1>
         <p>Uñas, Pedicura & Estilo</p>
         <a href="#citas" class="btn btn-dorado">Agendar Cita</a>
     </section>
+
 
     <section class="seccion" id="servicios">
         <h2 class="titulo-seccion">Nuestros Servicios</h2>
@@ -255,6 +215,7 @@
         </div>
     </section>
 
+
     <section class="seccion" id="galeria" style="background-color: var(--beige-oscuro);">
         <h2 class="titulo-seccion">Galería</h2>
         <div class="carrusel">
@@ -266,30 +227,48 @@
         </div>
     </section>
 
-   <section class="seccion" id="citas">
-    <h2 class="titulo-seccion">Tu Momento</h2>
-    
-    <a href="https://wa.me/526871597255?text=Hola%20Rox,%20tengo%20una%20duda..." class="ws-link" target="_blank">
-        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.67-1.611-.918-2.21-.242-.587-.487-.508-.67-.517-.172-.008-.37-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.433 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.481-8.413z"></path></svg>
-        ¿Dudas? Contáctanos
-    </a>
 
-    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(75, 54, 33, 0.1); border: 2px solid var(--dorado); margin-top: 20px;">
-        <h3 style="color: var(--cafe); margin-bottom: 15px;">Agenda tu Servicio</h3>
-        <p style="margin-bottom: 30px; font-size: 0.9rem;">Elige tu diseño de uñas o pedicura spa en nuestro sistema seguro.</p>
+    <section class="seccion" id="social" style="background-color: var(--blanco); border-top: 1px solid var(--beige-oscuro);">
+        <h2 class="titulo-seccion" style="font-size: 3.5rem;">Síguenos</h2>
+        <p style="margin-bottom: 10px;">Encuentra inspiración para tu próximo diseño en nuestro perfil:</p>
         
-        <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" 
-           target="_blank" 
-           class="btn btn-dorado" 
-           style="display: inline-block; padding: 20px 40px; font-size: 1rem;">
-            RESERVAR AHORA
+        <strong class="ig-handle">@DivineByRox</strong>
+
+        <a href="https://www.instagram.com/divinebyrox?igsh=MW1pdG5nMjE5NW9ocw==" class="btn" target="_blank" 
+           style="border-color: var(--dorado); color: var(--cafe); display: inline-flex; align-items: center; gap: 10px; background: var(--beige);">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.337 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28-.073-1.689-.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            VER PORTAFOLIO EN INSTAGRAM
         </a>
+    </section>
+
+
+    <section class="seccion" id="citas">
+        <h2 class="titulo-seccion">Tu Momento</h2>
         
-        <p style="margin-top: 25px; font-size: 0.8rem; color: #888;">
-            ✨ Tip: Al terminar de agendar, solo cierra la ventana para volver aquí.
-        </p>
-    </div>
-</section>
+        <a href="https://wa.me/526871597255?text=Hola%20Rox,%20tengo%20una%20duda..." class="ws-link" target="_blank">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.148-.67-1.611-.918-2.21-.242-.587-.487-.508-.67-.517-.172-.008-.37-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.433 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.892a11.826 11.826 0 00-3.481-8.413z"></path></svg>
+            ¿Dudas? Contáctanos
+        </a>
+
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(75, 54, 33, 0.1); border: 2px solid var(--dorado); margin-top: 20px;">
+            <h3 style="color: var(--cafe); margin-bottom: 15px;">Agenda tu Servicio</h3>
+            <p style="margin-bottom: 30px; font-size: 0.9rem;">Elige tu diseño de uñas o pedicura spa en nuestro sistema seguro.</p>
+            
+            <a href="https://square.site/appointments/buyer/widget/aa4gj9u9t4wty1/LN83Y3ZADGGRJ" 
+               target="_blank" 
+               class="btn btn-dorado" 
+               style="display: inline-block; padding: 20px 40px; font-size: 1rem;">
+                RESERVAR AHORA
+            </a>
+            
+            <p style="margin-top: 25px; font-size: 0.8rem; color: #888;">
+                ✨ Tip: Al terminar de agendar, solo cierra la ventana para volver aquí.
+            </p>
+        </div>
+    </section>
+
 
     <section class="seccion" id="ubicacion">
         <h2 class="titulo-seccion">Visítanos</h2>
