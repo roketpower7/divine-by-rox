@@ -65,14 +65,17 @@
         .titulo-seccion { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px; font-weight: 700; margin-bottom: 60px; }
 
         /* --- HERO --- */
+       /* --- HERO (OPCIÓN 1: BLANCO EDITORIAL) --- */
         .hero { 
             height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            background: linear-gradient(rgba(26, 18, 11, 0.3), rgba(26, 18, 11, 0.3)), 
+            /* Aumentamos el tinte negro de 0.3 a 0.5 para dar más contraste */
+            background: linear-gradient(rgba(26, 18, 11, 0.5), rgba(26, 18, 11, 0.5)), 
                         url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1920&q=80') center/cover;
             color: var(--blanco); border-bottom: 1px solid var(--cafe-negro);
         }
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6rem; margin: 0; color: var(--dorado); }
-        .hero p { letter-spacing: 10px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 30px; }
+        /* Letra blanca con una sombra trasera imperceptible para separar la letra del fondo */
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6rem; margin: 0; color: var(--blanco); text-shadow: 0px 4px 15px rgba(0,0,0,0.5); }
+        .hero p { letter-spacing: 10px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 30px; color: var(--dorado); }
 
         /* --- SERVICIOS --- */
         .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border: 1px solid var(--cafe-negro); }
