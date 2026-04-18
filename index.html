@@ -34,24 +34,22 @@
             overscroll-behavior-y: none; /* Evita el rebote elástico en Android */
         }
 
-        /* EL CONTENEDOR SEGURO QUE EVITA EL FREEZE */
+       /* EL CONTENEDOR SEGURO QUE EVITA EL FREEZE */
         .site-wrapper {
             width: 100%;
             overflow-x: hidden;
             position: relative;
+            overflow-anchor: none; /* ESTO APAGA EL BLOQUEO NATIVO DE CHROME */
         }
 
-       /* --- TRANSICIONES (REVEAL) CORREGIDAS --- */
+       /* --- TRANSICIONES (REVEAL) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            /* REGLA DE ORO: Especificar solo lo que se anima, nunca usar 'all' */
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            /* Se eliminó will-change para liberar la RAM del celular */
+            /* Eliminamos el transform que movía las cosas de lugar */
+            transition: opacity 0.6s ease-in-out; 
         }
         .reveal.active { 
             opacity: 1; 
-            transform: translateY(0); 
         }
 
         /* --- MENÚ TIPO PAINTBOX (STICKY) --- */
